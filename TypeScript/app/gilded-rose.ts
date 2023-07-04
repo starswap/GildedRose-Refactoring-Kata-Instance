@@ -21,7 +21,7 @@ export class GildedRose {
     // Check Preconditions
     for (const item of items) {
       assert(item.quality >= 0);
-      assert(item.quality <= 50);
+      assert(item.quality <= 50 || (item.name == 'Sulfuras, Hand of Ragnaros' && item.quality == 80));
     }
   }
 

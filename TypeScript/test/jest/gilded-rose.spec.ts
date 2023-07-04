@@ -1,4 +1,5 @@
 import { Item, GildedRose } from '@/gilded-rose';
+import { AssertionError } from 'node:assert';
 
 describe('Gilded Rose', () => {
   it('should decrease the quality by 1 for a general item', () => {
@@ -121,6 +122,14 @@ describe('Gilded Rose', () => {
     const gildedRose = new GildedRose([new Item("Conjured Mana Cake", -1, 10)]);
     const items = gildedRose.updateQuality();
     expect(items[0].quality).toBe(6);
+  });
+
+  it('should not allow an item to be added with a quality which is above 50', () => {
+    expect( () => {new GildedRose([new Item("Conjured Mana Cake", 10, 51)])}).toThrow(AssertionError);
+  });
+
+  it('should not allow an item to be added with a quality which less than 0', () => {
+    expect( () => {new GildedRose([new Item("Conjured Mana Cake", 10, -1)])}).toThrow(AssertionError);
   });
 
 });

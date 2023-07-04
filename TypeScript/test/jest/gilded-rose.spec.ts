@@ -111,5 +111,17 @@ describe('Gilded Rose', () => {
     expect(items[0].quality).toBe(0);
   });
 
+  it('should make conjured items degrade by 2 when not past the sell by date', () => {
+    const gildedRose = new GildedRose([new Item("Conjured Mana Cake", 10, 10)]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].quality).toBe(8);
+  });
+
+  it('should make conjured items degrade by 4 when past the sell by date', () => {
+    const gildedRose = new GildedRose([new Item("Conjured Mana Cake", -1, 10)]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].quality).toBe(6);
+  });
+
 });
 

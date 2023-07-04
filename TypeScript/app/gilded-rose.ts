@@ -37,11 +37,11 @@ export class GildedRose {
           case ('Backstage passes to a TAFKAL80ETC concert'):
             if (item.sellIn >= 10) {
               item.quality += 1;
-            } else if (item.sellIn >= 5) {
+            } else if (item.sellIn >= 5) { // 5 <= sellIn < 10
               item.quality += 2
-            } else if (item.sellIn >= 0) { // 5 days or less before the concert
+            } else if (item.sellIn >= 0) { // 0 <= sellIn < 5
               item.quality += 3
-            } else {
+            } else { // sellIn < 0
               item.quality = 0
             }
             break;
